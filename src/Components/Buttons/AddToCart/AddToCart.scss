@@ -1,0 +1,14 @@
+@import "../../../Stylings/mixins/mixins.scss";
+@import "../../../Stylings/variables/colors.scss";
+@import "../../../Stylings/variables/fonts.scss";
+
+.Add_to_cart_button{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    @include primary-button;
+    @include font-semibold;
+    padding: 10px;
+    gap: 10px;
+}

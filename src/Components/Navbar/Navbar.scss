@@ -1,0 +1,89 @@
+@import '../../Stylings/mixins/mixins.scss';
+@import '../../Stylings/variables/colors.scss';
+@import '../../Stylings/variables/fonts.scss';
+
+
+.Navbar{
+    @include display-items;
+    width: 100%;
+    padding: 20px 60px;
+    gap: 62px;
+    // position: absolute;
+    background-color: $primaryColor1;
+    font-family: $myFont;
+
+    .Navbar__logo{
+        width:5%;
+        margin-right: 250px;
+        margin-left: 10px;
+        @include font-extrabold;
+        font-size: 32px;
+        line-height: 38px;
+        text-align: center;
+        color: $primaryColor3;
+    }
+    .Navbar__search{
+        @include display-items;
+        padding: 10px 30px;
+        gap:50px;
+        background: $primaryColor3;
+        border-radius: 30px;
+        border-color: transparent;
+
+        .Navbar__search__text{
+            @include font-normal;
+            text-align: left;
+            border: none;            
+        }
+    }
+    .Navbar__upload__button{
+        @include primary-button;
+        @include display-items;
+        justify-content: center;
+        padding: 15px;
+        gap: 10px; 
+
+        .Navbar__upload__button__text{
+            @include font-semibold;
+            text-align: center;
+            color: $primaryColor4;
+        }
+    }
+    .Navbar__user__details{
+        @include display-items;
+        padding: 0px;
+        gap: 15px;
+
+        .Navbar__user__details__user{
+            @include display-items;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 2px;
+            
+            .Navbar__user__details__user__icon{
+                color: $primaryColor3;
+            }
+            .Navbar__user__details__user__text{
+                @include font-normal;
+                text-align: center;
+                color: $primaryColor3;
+            }
+        }
+        .Navbar__user__details__cart{
+            @include display-items;
+            padding: 0px;
+            gap:2px;
+
+            .Navbar__user__details__cart__icon{
+                color: $primaryColor3;
+            }
+            .Navbar__user__details__cart__text{
+                @include font-normal;
+                color: $primaryColor3;
+                text-align: center;
+                
+            }
+        }
+    }
+
+}

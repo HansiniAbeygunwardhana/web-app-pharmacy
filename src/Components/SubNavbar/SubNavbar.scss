@@ -1,0 +1,18 @@
+@import '../../Stylings/mixins/mixins.scss';
+@import '../../Stylings/variables/colors.scss';
+@import '../../Stylings/variables/fonts.scss';
+@import '~bootstrap/scss/bootstrap.scss';
+
+.SubNavbar{
+  width: 100%;
+  background-color: $primaryColor2;
+  @include font-normal;
+  color: $primaryColor3;
+  .SubNavbar__list{
+    justify-content: space-between;
+    padding: 0px 60px;
+  }
+  .SubNavbar__dropdown .dropdown-toggle{
+    color: $primaryColor3;
+  }
+}

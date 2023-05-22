@@ -1,0 +1,50 @@
+@import "../../Stylings/mixins/mixins.scss";
+@import "../../Stylings/variables/colors.scss";
+@import "../../Stylings/variables/fonts.scss";
+
+.Product_card{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    border-radius: 15px;
+    width: 260px;
+    min-height: 500px;
+    margin: 20px;
+    padding-bottom: 15px;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+
+    &:hover{
+        box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
+        transition: 0.3s ease-in;
+        cursor: pointer;
+    }
+    .Product_card__image{
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        background-position: center;
+        background-size: cover;
+    }
+    .Product_card__details{
+        height: 50%;
+    }
+    .Product_card__title,.Product_card__rating,.Product_card__price, .Product_card__status{
+        margin-left: 20px
+    }
+    .Product_card__rating{
+        display: flex;
+        flex-direction: row;
+        color: #FFB800;
+    }
+    .Product_card__status__available{
+        color: rgb(8, 145, 8);
+    }
+    .Product_card__status__notavailable{
+        color: rgb(219, 6, 6);
+    }
+
+    .Product_card__button{
+        width: 60%;
+        align-items: center;
+    }
+    }
