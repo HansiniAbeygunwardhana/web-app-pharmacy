@@ -4,12 +4,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Outlet, Link } from "react-router-dom";
 
 export const Navbar = () => {
   return (
     <>
       <nav className="Navbar">
         <div className="Navbar__logo">SHAN PHARMACY</div>
+
         <div className="Navbar__search">
           <input
             className="Navbar__search__text"

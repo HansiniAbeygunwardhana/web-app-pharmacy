@@ -21,6 +21,7 @@
         line-height: 38px;
         text-align: center;
         color: $primaryColor3;
+        cursor: pointer;
     }
     .Navbar__search{
         @include display-items;
@@ -33,7 +34,10 @@
         .Navbar__search__text{
             @include font-normal;
             text-align: left;
-            border: none;            
+            border: none;      
+            &:focus{
+                outline: none;
+            }      
         }
     }
     .Navbar__upload__button{
@@ -53,12 +57,15 @@
         @include display-items;
         padding: 0px;
         gap: 15px;
+        
 
         .Navbar__user__details__user{
             @include display-items;
             align-items: flex-start;
             padding: 0px;
             gap: 2px;
+            cursor: pointer;
+            
             
             .Navbar__user__details__user__icon{
                 color: $primaryColor3;
@@ -67,12 +74,14 @@
                 @include font-normal;
                 text-align: center;
                 color: $primaryColor3;
+              
             }
         }
         .Navbar__user__details__cart{
             @include display-items;
             padding: 0px;
             gap:2px;
+            cursor: pointer;
 
             .Navbar__user__details__cart__icon{
                 color: $primaryColor3;
