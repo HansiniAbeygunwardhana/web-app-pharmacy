@@ -14,7 +14,7 @@ export const ProductList = [
   {
     id: 1,
     image: prescription_only,
-    name: "PRODUCT NAME2",
+    name: "oxine",
     rating: 4,
     price: 500,
     isAvailable: true,

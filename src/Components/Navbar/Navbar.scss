@@ -21,25 +21,51 @@
         line-height: 38px;
         text-align: center;
         color: $primaryColor3;
+        text-decoration: none;
         cursor: pointer;
     }
-    .Navbar__search{
-        @include display-items;
-        padding: 10px 30px;
-        gap:50px;
-        background: $primaryColor3;
-        border-radius: 30px;
-        border-color: transparent;
+    .Navbar__searchbar{
+        @include display-items-columns;
+        position: relative;
+        .Navbar__search{
+            @include display-items;
+            padding: 10px 30px;
+            gap:50px;
+            background: $primaryColor3;
+            border-radius: 5px;
+            border-color: transparent;
+    
+            .Navbar__search__text{
+                @include font-normal;
+                text-align: left;
+                border: none;      
+                &:focus{
+                    outline: none;
+                }      
+            }
+        }
+        .Navbar__dropdown{
+            position: absolute;
+            margin-top: 48px;            
+            z-index: 20;
+            border: 0.5px solid $primaryColor1;
+            width:100%;
+            background-color: $primaryColor3;
+            
+            .Navbar__dropdown__row{
+                width: 100%;
+                cursor: pointer;
+                background-color: $primaryColor3;
+                padding-left: 50px;
+                &:hover{
+                    background-color: $primaryColor2;
+                    color: $primaryColor3;
+                }
 
-        .Navbar__search__text{
-            @include font-normal;
-            text-align: left;
-            border: none;      
-            &:focus{
-                outline: none;
-            }      
+            }
         }
     }
+    
     .Navbar__upload__button{
         @include primary-button;
         @include display-items;

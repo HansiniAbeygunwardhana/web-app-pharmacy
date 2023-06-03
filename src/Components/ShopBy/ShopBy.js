@@ -1,5 +1,5 @@
 import React from "react";
-import "./SearchBy.scss";
+import "./ShopBy.scss";
 
 export const SearchBy = () => {
   return (

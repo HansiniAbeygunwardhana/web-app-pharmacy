@@ -1,8 +1,15 @@
+import React from "react";
+
 import { Pagination } from "antd";
-const App = () => (
+const CustomPagination = ({ dataLength, numEachPage }) => (
   <div style={{ padding: "20px" }}>
-    <Pagination defaultCurrent={1} total={500} />
+    {/* <Pagination
+      defaultCurrent={1}
+      total={dataLength}
+      defaultPageSize={numEachPage}
+      onChange={handleChange}
+    /> */}
   </div>
 );
 
-export default App;
+export default CustomPagination;
