@@ -16,10 +16,6 @@ const ProductCard = ({
 }) => {
   return (
     <div className="Product_card">
-      {/* <div
-        className="Product_card__image"
-        style={{ backgroundImage: `url(${image})` }}
-      ></div> */}
       <img className="Product_card__image" src={image}></img>
       <div className="Product_card__details">
         <h5 className="Product_card__title">{name}</h5>

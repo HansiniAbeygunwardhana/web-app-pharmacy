@@ -1,0 +1,27 @@
+@import '../../Stylings/mixins/mixins.scss';
+@import '../../Stylings/variables/colors.scss';
+@import '../../Stylings/variables/fonts.scss';
+
+
+.Sort-area{
+    margin: 10px;
+
+    .Sort-area__dropdown{
+        padding: 5px;
+        border-color: $primaryColor2;
+        border-radius: 5px;
+        dis
+
+        .Sort-area__dropdown__option{
+            display: none;
+        }
+    }
+        &:hover {
+            .Sort-area__dropdown{
+                display: block;
+            }            
+        }
+        &:hover .Sort-area__dropdown__option{
+            display: block;
+        }
+    }

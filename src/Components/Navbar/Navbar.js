@@ -1,24 +1,45 @@
 import React from "react";
 import { useState } from "react";
 import "./Navbar.scss";
-import { useNavigate } from "react-router-dom";
 import { ProductList } from "../../Helpers/ProductList/ProductList";
-import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate } from "react-router-dom";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
+import SearchBar from "../SearchBar/SearchBar";
 
-export const Navbar = () => {
+export const Navbar = ({ onInputSearchChange }) => {
   let navigate = useNavigate();
-  const [value, setValue] = useState("");
-  const onChange = (event) => {
-    setValue(event.target.value);
+  const [inputValue, setInputValue] = useState("");
+  const onInputRecieved = (event) => {
+    setInputValue(event.target.value);
+    console.log("inputed", inputValue);
   };
   const onSearch = (searchTerm) => {
     // TO DO : need API to fetch the search results
-    setValue(searchTerm);
+    setInputValue(searchTerm);
     console.log("search", searchTerm);
+  };
+  const onSearchIconClick = () => {
+    navigate("/search-results");
+  };
+  const suggestDropDown = () => {
+    {
+      return ProductList.filter((productItems) => {
+        const searchTerm = inputValue.toString().toLowerCase();
+        const name = productItems.name.toString().toLowerCase();
+
+        return searchTerm && name.startsWith(searchTerm) && name !== searchTerm;
+      }).map((productItems, key) => (
+        <div
+          onClick={() => onSearch(productItems.name)}
+          className="Navbar__dropdown__row"
+          key={productItems.id}
+        >
+          {productItems.name}
+        </div>
+      ));
+    }
   };
 
   return (
@@ -32,48 +53,15 @@ export const Navbar = () => {
         >
           SHAN PHARMACY
         </div>
-
-        <div className="Navbar__searchbar">
-          <div className="Navbar__search">
-            <input
-              className="Navbar__search__text"
-              type="text"
-              placeholder="Search entire pharmacy..."
-              value={value}
-              onChange={onChange}
-            />
-            <div
-              className="Navbar__search__icon"
-              onClick={() => {
-                // the state object allows to store and manage component-specific data
-                navigate("/search-results");
-              }}
-            >
-              <SearchIcon />
-            </div>
-          </div>
-          <div className="Navbar__dropdown">
-            {ProductList.filter((productItems) => {
-              const searchTerm = value.toLowerCase();
-              const name = productItems.name.toLowerCase();
-
-              return (
-                searchTerm && name.startsWith(searchTerm) && name !== searchTerm
-              );
-            })
-              .slice(0, 9)
-              .map((productItems, key) => (
-                <div
-                  onClick={() => onSearch(productItems.name)}
-                  className="Navbar__dropdown__row"
-                  key={productItems.id}
-                >
-                  {productItems.name}
-                </div>
-              ))}
-          </div>
+        <div>
+          <SearchBar
+            onInputChange={onInputRecieved}
+            value={inputValue}
+            onSearchIconClick={onSearchIconClick}
+            suggestDropDown={suggestDropDown}
+            onChange={onInputSearchChange}
+          />
         </div>
-
         <button
           className="Navbar__upload__button"
           onClick={() => {
