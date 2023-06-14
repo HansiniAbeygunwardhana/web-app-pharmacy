@@ -1,0 +1,60 @@
+@import "../../../Stylings/mixins/mixins.scss";
+@import "../../../Stylings/variables/colors.scss";
+@import "../../../Stylings/variables/fonts.scss";
+
+.InventoryForm-header{
+    @include display-items;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0px 70px;
+
+    .InventoryForm-header__title{
+        font-family: $myFont;
+        @include font-semibold;
+    }
+    select,option{
+        font-family: $myFont;
+        @include font-normal;
+        padding: 5px;
+        border-radius: 15px;
+        color: $primaryColor2;
+        border-color: $primaryColor1;
+    }
+}
+
+.InventoryForm-Container{
+    width: 75%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    font-family: $myFont;
+    background-color: rgba($color: $primaryColor2, $alpha: 0.2);
+    border-radius: 15px;
+    margin: 0 auto;
+    margin-top: 20px;
+
+    form{
+        width: 100%;
+        label{
+            @include font-normal;
+            color: $primaryColor4;
+        }
+        input,select{
+            width: 100%;
+            border: none;
+            padding: 2px 5px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            &:focus{
+                outline-color: $primaryColor1;
+            }
+        }
+        .InventoryForm__Subcontainer{
+            @include display-items;
+        }
+        .InventoryForm__Submit-Button{
+            margin-top: 10px;
+            border: none;
+        }
+    }
+}

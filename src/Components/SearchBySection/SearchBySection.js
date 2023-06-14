@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./SearchBySectionNew.scss";
 import { Slider } from "antd";
+import { async } from "q";
 
 // const minRange = 0;
 // const maxRange = 100000;
@@ -18,8 +19,16 @@ export const SearchBy = ({
   // const [range, useRange] = useState([minRange, maxRange]);
 
   const searchList = ["tablet", "sprays", "inhalers", "injections", "capsules"];
+  const [categoryItemList, setCategoryItemList] = useState([]);
 
-  // const searchListPrice = ["LKR 0.00 - LKR 9000.00", "Above LKR 9000.00"];
+  useEffect(() => {
+    const fetchData = async () => {
+      const resultCategory = await fetch("http://localhost:8080/category/list");
+      const jsonResultCategory = await resultCategory.json();
+      setCategoryItemList(jsonResultCategory);
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="Searchby col-12">
@@ -28,9 +37,13 @@ export const SearchBy = ({
         CATEGORY
         <div className="Searchby__title_type__options col-12">
           <ul>
-            {searchList.map((item) => (
-              <li key={item} value={item} onClick={onSearchedValueChanged}>
-                {item}
+            {categoryItemList.map((item) => (
+              <li
+                key={item.id}
+                value={item.id}
+                onClick={onSearchedValueChanged}
+              >
+                {item.categoryName}
               </li>
             ))}
           </ul>

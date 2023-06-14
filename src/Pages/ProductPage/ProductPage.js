@@ -43,7 +43,7 @@ export const ProductPage = () => {
           productItemList.filter(
             (product) =>
               product.available === true &&
-              product.category === selectedCategory
+              product.categoryId === selectedCategory
           )
         );
       } else if (sortValue === "unavailable") {
@@ -51,19 +51,19 @@ export const ProductPage = () => {
           productItemList.filter(
             (product) =>
               product.available === false &&
-              product.category === selectedCategory
+              product.categoryId === selectedCategory
           )
         );
       } else if (sortValue === "price") {
         setFilteredItemList(
           productItemList
-            .filter((product) => product.category === selectedCategory)
+            .filter((product) => product.categoryId === selectedCategory)
             .sort((a, b) => a.price - b.price)
         );
       } else {
         setFilteredItemList(
           productItemList.filter(
-            (product) => product.category === selectedCategory
+            (product) => product.categoryId === selectedCategory
           )
         );
       }
@@ -123,12 +123,12 @@ export const ProductPage = () => {
   };
 
   const onSearchedValueSelected = (searchValue) => {
-    let value = searchValue.target.getAttribute("value");
+    let value = searchValue.target.value;
     setSelectedCategory(value);
     // setSearchedByItemValue(value);
     if (value && searchValue) {
       setFilteredItemList(
-        productItemList.filter((product) => product.category === value)
+        productItemList.filter((product) => product.categoryId === value)
       );
     } else {
       setFilteredItemList(productItemList);

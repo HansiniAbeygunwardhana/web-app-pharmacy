@@ -7,7 +7,8 @@ import ProfilePage from "../Pages/ProfilePage/ProfilePage";
 import CartPage from "../Pages/CartPage/CartPage";
 import PrescriptionUploadPage from "../Pages/PrescriptionUploadPage/PrescriptionUploadPage";
 import SearchResultsPage from "../Pages/SearchresultsPage/SearchResultsPage";
-import FormSample from "../Pages/Form";
+import AddInventoryFormPage from "../Pages/AddInventoryFormPage/AddInventoryFormPage";
+import Success from "../Components/Alerts/Success/Success";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="prescriptionupload" element={<PrescriptionUploadPage />} />
         <Route path="/search-results" element={<SearchResultsPage />} />
-        <Route path="/form" element={<FormSample />} />
+        <Route path="/addinventoryform" element={<AddInventoryFormPage />} />
+        {/* <Route path="/s" element={<Success />} /> */}
       </Routes>
     </Router>
   );
