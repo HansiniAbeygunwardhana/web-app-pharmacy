@@ -1,0 +1,7 @@
+@import "../../Stylings/mixins/mixins.scss";
+
+.InventoryTablePage{
+    @include display-items-columns;
+    align-items: center;
+    gap: 40px;
+}

@@ -9,6 +9,7 @@ import PrescriptionUploadPage from "../Pages/PrescriptionUploadPage/Prescription
 import SearchResultsPage from "../Pages/SearchresultsPage/SearchResultsPage";
 import AddInventoryFormPage from "../Pages/AddInventoryFormPage/AddInventoryFormPage";
 import Success from "../Components/Alerts/Success/Success";
+import InventoryTablePage from "../Pages/InventoryTablePage/InventoryTablePage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="prescriptionupload" element={<PrescriptionUploadPage />} />
         <Route path="/search-results" element={<SearchResultsPage />} />
         <Route path="/addinventoryform" element={<AddInventoryFormPage />} />
+        <Route path="inventorytable" element={<InventoryTablePage />} />
         {/* <Route path="/s" element={<Success />} /> */}
       </Routes>
     </Router>
