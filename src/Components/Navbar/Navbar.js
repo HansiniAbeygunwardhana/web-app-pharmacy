@@ -7,6 +7,7 @@ import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchBar from "../SearchBar/SearchBar";
+import PrimaryButton from "../Buttons/PrimaryButton/PrimaryButton";
 
 export const Navbar = ({ onInputSearchChange }) => {
   let navigate = useNavigate();
@@ -41,6 +42,9 @@ export const Navbar = ({ onInputSearchChange }) => {
       ));
     }
   };
+  const btnFunc = () => {
+    navigate("/prescriptionupload");
+  };
 
   return (
     <>
@@ -62,7 +66,14 @@ export const Navbar = ({ onInputSearchChange }) => {
             onChange={onInputSearchChange}
           />
         </div>
-        <button
+        <div onClick={btnFunc} style={{ gap: "50px" }}>
+          <PrimaryButton
+            icon={<TextSnippetIcon />}
+            btnContent={"UPLOAD YOUR PRESCRIPTION"}
+            gap="50px"
+          />
+        </div>
+        {/* <button
           className="Navbar__upload__button"
           onClick={() => {
             navigate("/prescriptionupload");
@@ -74,7 +85,7 @@ export const Navbar = ({ onInputSearchChange }) => {
           <div className="Navbar__upload__button__icon">
             <TextSnippetIcon />
           </div>
-        </button>
+        </button> */}
         <div className="Navbar__user__details">
           <div
             className="Navbar__user__details__user"

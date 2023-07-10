@@ -8,7 +8,7 @@ class ProductService {
   }
 
   static getProductById(productId) {
-    return axios.get(`${PRODUCT_BASE_REST_API_URL}/list`, productId);
+    return axios.get(`${PRODUCT_BASE_REST_API_URL}/list/${productId}`);
   }
 
   static createProduct(product) {

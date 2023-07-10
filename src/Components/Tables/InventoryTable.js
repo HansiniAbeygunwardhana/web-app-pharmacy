@@ -6,7 +6,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Popconfirm } from "antd";
 import { useNavigate } from "react-router-dom";
 import ProductService from "../../Services/ProductService";
-import AddInventoryFormPage from "../../Pages/AddInventoryFormPage/AddInventoryFormPage";
 
 const InventoryTable = () => {
   const [productItemList, setProductItemList] = useState([]);
@@ -14,6 +13,20 @@ const InventoryTable = () => {
   const [tableKey, setTableKey] = useState(Date.now());
   const navigate = useNavigate();
 
+  const navigateToAddInventoryForm = (product) => {
+    const productId = product.key;
+    console.log(productId);
+    navigate("/addinventoryform", { state: { productId } }); // Pass the productId to the state object
+  };
+
+  const updateProduct = async (productId, updatedProduct) => {
+    try {
+      await ProductService.updateProduct(productId, updatedProduct);
+      getAllProducts();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const columns = [
     {
       title: "Product",
@@ -75,11 +88,7 @@ const InventoryTable = () => {
           >
             <DeleteIcon />
           </Popconfirm>
-          <EditIcon
-            onClick={() => {
-              navigate("/addinventoryform", { state: { product: record } });
-            }}
-          />
+          <EditIcon onClick={() => navigateToAddInventoryForm(record)} />
         </Space>
       ),
     },

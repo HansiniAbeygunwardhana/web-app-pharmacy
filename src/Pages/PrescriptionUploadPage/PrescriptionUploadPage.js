@@ -1,7 +1,18 @@
 import React from "react";
+import PrescriptForm from "../../Components/Forms/PrecriptForm/PrescriptForm";
+import Navbar from "../../Components/Navbar/Navbar";
+import SubNavbar from "../../Components/SubNavbar/SubNavbar";
+import Footer from "../../Components/Footer/Footer";
 
-function PrescriptionUploadPage() {
-  return <div>THIS IS THE PRESCRIPTION UPLOAD PAGE</div>;
-}
+const PrescriptionUploadPage = () => {
+  return (
+    <div>
+      <Navbar />
+      <SubNavbar />
+      <PrescriptForm />
+      <Footer />
+    </div>
+  );
+};
 
 export default PrescriptionUploadPage;

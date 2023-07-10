@@ -1,0 +1,25 @@
+@import "../../Stylings/mixins/mixins.scss";
+@import "../../Stylings/variables/colors.scss";
+@import "../../Stylings/variables/fonts.scss";
+
+
+.NoticeBar{
+    font-family: $myFont;
+    width: 100%;
+    @include font-semibold;
+    color: $primaryColor4;
+    padding: 20px;
+    @include display-items;
+    .NoticeBar__component{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        width: 25%;
+        .NoticeBar__component__img{
+            width: 30%;
+            height: auto;
+        }
+    }
+
+}

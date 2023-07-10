@@ -1,0 +1,31 @@
+@import "../../Stylings/mixins/mixins.scss";
+@import "../../Stylings/variables/colors.scss";
+@import "../../Stylings/variables/fonts.scss";
+
+.Uploader{
+    width: 100%;
+}
+.Uploader__uploadbutton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed $primaryColor2;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+.uploaded-row{
+    margin: 10px 0;
+    @include display-items;
+    align-items: center;
+    padding: 5px 20px;
+    border-radius: 5px;
+    background-color: $primaryColor2;
+    color: $primaryColor3;
+}
+
+.upload-content{
+    display: flex;
+    align-items: center;
+}

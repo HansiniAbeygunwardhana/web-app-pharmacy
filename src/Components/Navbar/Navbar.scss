@@ -25,19 +25,19 @@
         cursor: pointer;
     }
     
-    .Navbar__upload__button{
-        @include primary-button;
-        @include display-items;
-        justify-content: center;
-        padding: 15px;
-        gap: 10px; 
+    // .Navbar__upload__button{
+    //     @include primary-button;
+    //     @include display-items;
+    //     justify-content: center;
+    //     padding: 55px;
+    //     gap: 10px; 
 
-        .Navbar__upload__button__text{
-            @include font-semibold;
-            text-align: center;
-            color: $primaryColor4;
-        }
-    }
+    //     .Navbar__upload__button__text{
+    //         @include font-semibold;
+    //         text-align: center;
+    //         color: $primaryColor4;
+    //     }
+    // }
     .Navbar__user__details{
         @include display-items;
         padding: 0px;

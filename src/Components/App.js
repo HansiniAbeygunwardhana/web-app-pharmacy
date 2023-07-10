@@ -10,6 +10,7 @@ import SearchResultsPage from "../Pages/SearchresultsPage/SearchResultsPage";
 import AddInventoryFormPage from "../Pages/AddInventoryFormPage/AddInventoryFormPage";
 import Success from "../Components/Alerts/Success/Success";
 import InventoryTablePage from "../Pages/InventoryTablePage/InventoryTablePage";
+import FormTest from "./Forms/FormTest";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/search-results" element={<SearchResultsPage />} />
         <Route path="/addinventoryform" element={<AddInventoryFormPage />} />
         <Route path="inventorytable" element={<InventoryTablePage />} />
+        <Route path="frm" element={<FormTest />} />
         {/* <Route path="/s" element={<Success />} /> */}
       </Routes>
     </Router>
