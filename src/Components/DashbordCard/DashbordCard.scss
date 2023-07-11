@@ -1,0 +1,34 @@
+@import "../../Stylings/mixins/mixins.scss";
+@import "../../Stylings/variables/colors.scss";
+@import "../../Stylings/variables/fonts.scss";
+
+.dashboardcard{
+    width: 350px;
+    min-height: 100px;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    font-family: $myFont;
+  
+
+    &:hover{
+        box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
+        transition: 0.3s ease-in;
+        cursor: pointer;
+    }
+
+    .dashboardcard__container{
+        @include display-items-columns;
+        gap: 10px;
+        .dashboardcard__title{
+            @include font-semibold;
+            font-size: 18px;
+        }
+        .dashboardcard__content{
+            @include font-normal;
+            font-size: 12px;
+        }
+    }
+
+  
+}

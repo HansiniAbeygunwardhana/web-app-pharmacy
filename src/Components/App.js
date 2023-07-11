@@ -11,6 +11,8 @@ import AddInventoryFormPage from "../Pages/AddInventoryFormPage/AddInventoryForm
 import Success from "../Components/Alerts/Success/Success";
 import InventoryTablePage from "../Pages/InventoryTablePage/InventoryTablePage";
 import FormTest from "./Forms/FormTest";
+import ProductDetailContainer from "../Components/ProductDetailContainer/ProductDetailContainer";
+import EmployeeDashboardPage from "../../src/Pages/Dashboard/EmployeeDashboardPage/EmployeeDashboardPage";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/addinventoryform" element={<AddInventoryFormPage />} />
         <Route path="inventorytable" element={<InventoryTablePage />} />
         <Route path="frm" element={<FormTest />} />
+        <Route path="productdetail" element={<ProductDetailContainer />} />
+        <Route path="employeedashboard" element={<EmployeeDashboardPage />} />
         {/* <Route path="/s" element={<Success />} /> */}
       </Routes>
     </Router>

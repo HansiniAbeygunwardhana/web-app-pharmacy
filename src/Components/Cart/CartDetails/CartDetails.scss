@@ -1,0 +1,27 @@
+@import "../../../Stylings/mixins/mixins.scss";
+@import "../../../Stylings/variables/colors.scss";
+@import "../../../Stylings/variables/fonts.scss";
+
+
+.CartDetails{
+    width: 100%;
+    font-family: $myFont;
+    padding: 0px 150px;
+
+    .CartDetails__title{
+        @include font-semibold;
+        padding-bottom: 10px;
+        border-bottom: 1px solid black;
+    }
+    .CartDetails__content{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .CartDetails__item{
+            @include display-items;
+            .CartDetails__item__title{
+                @include font-semibold;
+            }
+        }
+    }
+}

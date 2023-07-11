@@ -10,6 +10,8 @@ import { Container } from "react-bootstrap";
 import { Col, Row } from "antd";
 import CustomPagination from "../../Components/Pagination/Pagination";
 import Footer from "../../Components/Footer/Footer";
+import ProductService from "../../Services/ProductService";
+import { useNavigate } from "react-router-dom";
 
 export const ProductPage = () => {
   const [productItemList, setProductItemList] = useState([]);
@@ -18,6 +20,7 @@ export const ProductPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedPriceRange, setSelectedPriceRange] = useState([[], []]);
   const [selectedSortValue, setSelectedSortValue] = useState("");
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   setProductItemList(ProductList);
@@ -25,14 +28,24 @@ export const ProductPage = () => {
   // }, [searchedByItemList]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await fetch("http://localhost:8080/product/list");
-      const jsonResult = await result.json();
-      setProductItemList(jsonResult);
-      setFilteredItemList(jsonResult);
-    };
-    fetchData();
+    getAllProducts();
   }, []);
+
+  const getAllProducts = () => {
+    ProductService.getAllProducts()
+      .then((response) => {
+        const recievedProducts = response.data;
+        setProductItemList(recievedProducts);
+        setFilteredItemList(recievedProducts);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const onCardClick = (productId) => {
+    navigate("/productdetail", { state: { productId } });
+  };
 
   const onSortValueSelected = (e) => {
     let sortValue = e.target.value;
@@ -226,6 +239,7 @@ export const ProductPage = () => {
                   isAvailable={productItem.available}
                   isPrescriptionMed={productItem.prescriptionMed}
                   category={productItem.categoryId}
+                  onClick={() => onCardClick(productItem.id)}
                 />
               ))}
             </div>
