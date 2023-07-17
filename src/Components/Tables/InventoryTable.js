@@ -6,6 +6,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Popconfirm } from "antd";
 import { useNavigate } from "react-router-dom";
 import ProductService from "../../Services/ProductService";
+import CategoryService from "../../Services/CategoryService";
 
 const InventoryTable = () => {
   const [productItemList, setProductItemList] = useState([]);
@@ -93,15 +94,15 @@ const InventoryTable = () => {
       ),
     },
   ];
+
   const getCategoryName = (categoryId) => {
-    const category = categoryItemList.find(
-      (category) => category.id === categoryId
-    );
+    const category = categoryItemList.find((item) => item.id === categoryId);
     return category ? category.categoryName : "";
   };
 
   useEffect(() => {
     getAllProducts();
+    getAllCategories();
   }, []);
 
   const getAllProducts = () => {
@@ -110,6 +111,16 @@ const InventoryTable = () => {
         const sortedProducts = response.data.reverse();
         setProductItemList(sortedProducts);
         console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getAllCategories = () => {
+    CategoryService.getAllCategories()
+      .then((response) => {
+        setCategoryItemList(response.data);
       })
       .catch((error) => {
         console.log(error);

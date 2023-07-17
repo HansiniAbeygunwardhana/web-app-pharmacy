@@ -2,26 +2,30 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import ProductService from "../../../Services/ProductService";
 import CategoryService from "../../../Services/CategoryService";
+import FileService from "../../../Services/FileService";
 import "./InventoryForm.scss";
 
-const InventoryForm = () => {
+const FormTest = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    id: null,
     productName: "",
     categoryId: 1,
     productPrice: 1,
     quantity: 1,
     available: false,
     prescriptionMed: false,
-    file: null,
+    productImageUrl: "",
     productRating: 1,
     expDate: "",
     threshold: 1,
+    file: null,
   });
 
   const [showSuccess, setShowSuccess] = useState(false);
   const [categoryNameList, setCategoryNameList] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,59 +53,50 @@ const InventoryForm = () => {
   }, [location.state]);
 
   useEffect(() => {
-    console.log(formData);
+    console.log("kasiya", formData);
   }, [formData]);
 
-  const getProductById = async (productId) => {
-    try {
-      const response = await ProductService.getProductById(productId);
-      const product = response.data;
-      setFormData({
-        productName: product.productName,
-        categoryId: product.categoryId,
-        productPrice: product.productPrice || 1,
-        quantity: product.quantity || 1,
-        available: product.available || false,
-        prescriptionMed: product.prescriptionMed || false,
-        file: null,
-        productRating: product.productRating || 1,
-        expDate: product.expDate || "",
-        threshold: product.threshold || 1,
+  const getProductById = (productId) => {
+    ProductService.getProductById(productId)
+      .then((response) => {
+        const product = response.data;
+        setFormData({
+          id: product.id,
+          productName: product.productName,
+          categoryId: product.categoryId,
+          productPrice: product.productPrice || 1,
+          quantity: product.quantity || 1,
+          available: product.available || false,
+          prescriptionMed: product.prescriptionMed || false,
+          productImageUrl: product.productImageUrl || "",
+          productRating: product.productRating || 1,
+          expDate: product.expDate || "",
+          threshold: product.threshold || 1,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      setSelectedFileName(""); // Clear the selected file name
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const [selectedFileName, setSelectedFileName] = useState("");
-
-  // Rest of the code...
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      file: file,
-    }));
-    setSelectedFileName(file ? file.name : "");
   };
 
   const handleSubmit = async (event) => {
+    console.log("handle submit");
     event.preventDefault();
-    const { file, ...otherFormData } = formData; // Exclude the file from form data
+    console.log("Form submitted:", formData);
 
     try {
-      const productData = new FormData();
-      productData.append("file", file); // Append the file to form data
-      Object.entries(otherFormData).forEach(([key, value]) => {
-        productData.append(key, value); // Append other form fields to form data
-      });
-
-      // Send the form data to the server for upload
       if (formData.id) {
-        await ProductService.updateProduct(formData.id, productData);
+        // Existing product, perform update
+        await ProductService.updateProduct(formData.id, formData);
       } else {
-        await ProductService.createProduct(productData);
+        // New product, perform create
+        const { file, ...productData } = formData;
+        const productDto = {
+          ...productData,
+          categoryId: parseInt(productData.categoryId),
+        };
+        await ProductService.createProduct(productDto, file);
+        console.log("create success");
       }
 
       navigate("/inventorytable");
@@ -110,9 +105,17 @@ const InventoryForm = () => {
     }
   };
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      file: file,
+    }));
+  };
+
   const handleChange = (event) => {
-    const { name, value, type, checked } = event.target;
-    const fieldValue = type === "checkbox" ? checked : value;
+    const { name, value, type } = event.target;
+    const fieldValue = type === "checkbox" ? event.target.checked : value;
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: fieldValue,
@@ -243,9 +246,9 @@ const InventoryForm = () => {
               id="file"
               name="file"
               type="file"
+              accept="image/*"
               onChange={handleFileChange}
             />
-            {selectedFileName && <span>{selectedFileName}</span>}
           </div>
           <div className="form-group">
             <button type="submit">Submit</button>
@@ -257,4 +260,4 @@ const InventoryForm = () => {
   );
 };
 
-export default InventoryForm;
+export default FormTest;

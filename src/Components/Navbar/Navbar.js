@@ -1,49 +1,66 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Navbar.scss";
 import { ProductList } from "../../Helpers/ProductList/ProductList";
-import { useNavigate } from "react-router-dom";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchBar from "../SearchBar/SearchBar";
 import PrimaryButton from "../Buttons/PrimaryButton/PrimaryButton";
+import UserNavigation from "./UserNavigation/UserNavigation";
+import UserAuthService from "../../Services/UserAuthService";
 
 export const Navbar = ({ onInputSearchChange }) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("");
-  const onInputRecieved = (event) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleInputChange = (event) => {
     setInputValue(event.target.value);
-    console.log("inputed", inputValue);
   };
-  const onSearch = (searchTerm) => {
-    // TO DO : need API to fetch the search results
+
+  const handleSearch = (searchTerm) => {
     setInputValue(searchTerm);
-    console.log("search", searchTerm);
+    console.log("Search:", searchTerm);
   };
-  const onSearchIconClick = () => {
+
+  const handleSearchIconClick = () => {
     navigate("/search-results");
   };
-  const suggestDropDown = () => {
-    {
-      return ProductList.filter((productItems) => {
-        const searchTerm = inputValue.toString().toLowerCase();
-        const name = productItems.name.toString().toLowerCase();
 
-        return searchTerm && name.startsWith(searchTerm) && name !== searchTerm;
-      }).map((productItems, key) => (
-        <div
-          onClick={() => onSearch(productItems.name)}
-          className="Navbar__dropdown__row"
-          key={productItems.id}
-        >
-          {productItems.name}
-        </div>
-      ));
+  const handleUploadPrescription = () => {
+    navigate("/prescriptionupload");
+  };
+
+  const handleLoginLogout = () => {
+    const loggedIn = UserAuthService.isLoggedIn();
+    setIsLoggedIn(loggedIn);
+    if (loggedIn) {
+      // Perform logout action
+      UserAuthService.clear();
+      setIsLoggedIn(false); // Update the isLoggedIn state to reflect the logout
+      navigate("/");
+    } else if (!loggedIn) {
+      // Perform login action
+      console.log("check true", loggedIn);
+      setIsLoggedIn(true); // Update the isLoggedIn state to reflect the login
+      navigate("/login");
     }
   };
-  const btnFunc = () => {
-    navigate("/prescriptionupload");
+
+  const suggestDropDown = () => {
+    return ProductList.filter((productItem) => {
+      const searchTerm = inputValue.toLowerCase();
+      const name = productItem.name.toLowerCase();
+      return searchTerm && name.startsWith(searchTerm) && name !== searchTerm;
+    }).map((productItem, key) => (
+      <div
+        key={productItem.id}
+        className="Navbar__dropdown__row"
+        onClick={() => handleSearch(productItem.name)}
+      >
+        {productItem.name}
+      </div>
+    ));
   };
 
   return (
@@ -59,55 +76,34 @@ export const Navbar = ({ onInputSearchChange }) => {
         </div>
         <div>
           <SearchBar
-            onInputChange={onInputRecieved}
+            onInputChange={handleInputChange}
             value={inputValue}
-            onSearchIconClick={onSearchIconClick}
+            onSearchIconClick={handleSearchIconClick}
             suggestDropDown={suggestDropDown}
             onChange={onInputSearchChange}
           />
         </div>
-        <div onClick={btnFunc} style={{ gap: "50px" }}>
+        <div onClick={handleUploadPrescription}>
           <PrimaryButton
             icon={<TextSnippetIcon />}
-            btnContent={"UPLOAD YOUR PRESCRIPTION"}
-            gap="50px"
+            btnContent={"UPLOAD PRESCRIPTION"}
           />
         </div>
-        {/* <button
-          className="Navbar__upload__button"
-          onClick={() => {
-            navigate("/prescriptionupload");
-          }}
-        >
-          <div className="Navbar__upload__button__text">
-            UPLOAD YOUR PRESCRIPTION
-          </div>
-          <div className="Navbar__upload__button__icon">
-            <TextSnippetIcon />
-          </div>
-        </button> */}
         <div className="Navbar__user__details">
-          <div
-            className="Navbar__user__details__user"
-            onClick={() => {
-              navigate("/profile");
-            }}
-          >
-            <div className="Navbar__user__details__user__icon">
-              <AccountCircleIcon />
-            </div>
-            <div className="Navbar__user__details__user__text">UserName</div>
-          </div>
-          <div
-            className="Navbar__user__details__cart"
-            onClick={() => {
-              navigate("/cart");
-            }}
-          >
-            <div className="Navbar__user__details__cart__icon">
-              <ShoppingCartIcon />
-            </div>
-            <div className="Navbar__user__details__cart__text">0</div>
+          <div>
+            {isLoggedIn ? (
+              <UserNavigation
+                userIcon={<AccountCircleIcon />}
+                userText={"LOGOUT"}
+                onClickFunc={handleLoginLogout}
+              />
+            ) : (
+              <UserNavigation
+                userIcon={<AccountCircleIcon />}
+                userText={"LOGIN"}
+                onClickFunc={handleLoginLogout}
+              />
+            )}
           </div>
         </div>
       </nav>

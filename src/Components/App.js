@@ -13,6 +13,10 @@ import InventoryTablePage from "../Pages/InventoryTablePage/InventoryTablePage";
 import FormTest from "./Forms/FormTest";
 import ProductDetailContainer from "../Components/ProductDetailContainer/ProductDetailContainer";
 import EmployeeDashboardPage from "../../src/Pages/Dashboard/EmployeeDashboardPage/EmployeeDashboardPage";
+import AdminDashboardPage from "../../src/Pages/Dashboard/AdminDashboardPage/AdminDashboardPage";
+import CustomerDashboardPage from "../../src/Pages/Dashboard/CustomerDashboardPage/CustomerDashboardPage";
+import Checkout from "../Pages/CheckoutPage/Checkout";
+import LoginPage from "../Pages/LoginPage/LoginPage";
 
 function App() {
   return (
@@ -25,10 +29,14 @@ function App() {
         <Route path="prescriptionupload" element={<PrescriptionUploadPage />} />
         <Route path="/search-results" element={<SearchResultsPage />} />
         <Route path="/addinventoryform" element={<AddInventoryFormPage />} />
-        <Route path="inventorytable" element={<InventoryTablePage />} />
-        <Route path="frm" element={<FormTest />} />
-        <Route path="productdetail" element={<ProductDetailContainer />} />
-        <Route path="employeedashboard" element={<EmployeeDashboardPage />} />
+        <Route path="/inventorytable" element={<InventoryTablePage />} />
+        <Route path="/frm" element={<FormTest />} />
+        <Route path="/productdetail" element={<ProductDetailContainer />} />
+        <Route path="/employeedashboard" element={<EmployeeDashboardPage />} />
+        <Route path="/admindashboard" element={<AdminDashboardPage />} />
+        <Route path="/customerdashboard" element={<CustomerDashboardPage />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/login" element={<LoginPage />} />
         {/* <Route path="/s" element={<Success />} /> */}
       </Routes>
     </Router>

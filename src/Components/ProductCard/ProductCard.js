@@ -5,6 +5,8 @@ import AddToCart from "../Buttons/AddToCart/AddToCart";
 import { Add } from "@mui/icons-material";
 import StarIcon from "@mui/icons-material/Star";
 import { ProductList } from "../../Helpers/ProductList/ProductList";
+import PrimaryButton from "../Buttons/PrimaryButton/PrimaryButton";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({
   image,
@@ -14,6 +16,7 @@ const ProductCard = ({
   isAvailable,
   isPrescriptionMed,
   onClick,
+  onBtnClick,
 }) => {
   return (
     <div className="Product_card" onClick={onClick}>
@@ -36,7 +39,11 @@ const ProductCard = ({
         <div className="Product__card__button">
           {isAvailable && !isPrescriptionMed && (
             <div>
-              <AddToCart />
+              <PrimaryButton
+                btnContent={"ADD TO CART"}
+                icon={<ShoppingCartIcon />}
+                btnFunc={onBtnClick}
+              />
             </div>
           )}
         </div>

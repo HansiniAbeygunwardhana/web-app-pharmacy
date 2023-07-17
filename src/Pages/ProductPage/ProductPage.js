@@ -43,8 +43,8 @@ export const ProductPage = () => {
       });
   };
 
-  const onCardClick = (productId) => {
-    navigate("/productdetail", { state: { productId } });
+  const onBtnClick = () => {
+    navigate("/cart");
   };
 
   const onSortValueSelected = (e) => {
@@ -239,7 +239,8 @@ export const ProductPage = () => {
                   isAvailable={productItem.available}
                   isPrescriptionMed={productItem.prescriptionMed}
                   category={productItem.categoryId}
-                  onClick={() => onCardClick(productItem.id)}
+                  // onClick={() => onCardClick(productItem.id)}
+                  onBtnClick={onBtnClick}
                 />
               ))}
             </div>

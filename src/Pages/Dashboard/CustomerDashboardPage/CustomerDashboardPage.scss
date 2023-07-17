@@ -1,0 +1,37 @@
+@import "../../../Stylings/mixins/mixins.scss";
+@import "../../../Stylings/variables/fonts.scss";
+
+.CustomerDashboardPage{
+    font-family: $myFont;
+    .CustomerDashboardPage__maincontainer{
+      margin: 30px 75px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;  
+        .CustomerDashboardPage__header{
+            @include font-semibold;
+        }
+        .CustomerDashboardPage__card_container{
+           display: flex;
+           flex-direction: row;
+           justify-content: space-between;
+        }
+    }
+
+    // .Employeedashboard__subcontainer{       
+    //     display: flex;
+    //     flex-direction: row;
+    //     justify-content: space-between;
+    //     padding: 0px 200px;
+    //     .Employeedashboard__subcontainer__notification{
+    //         display: flex;
+    //         flex-direction: column;
+    //         gap: 5px;
+    //         .Employeedashboard__subcontainer__notification__title{
+    //             color: red;
+    //             font-weight: bold;
+    //         }
+    //     }
+    // }
+
+}

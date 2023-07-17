@@ -1,18 +1,18 @@
 import React from "react";
 import DashbordCard from "../../../Components/DashbordCard/DashbordCard";
-import "./AdminDashboardPage.scss";
+import "./CustomerDashboardPage.scss";
 import Navbar from "../../../Components/Navbar/Navbar";
 import SubNavbar from "../../../Components/SubNavbar/SubNavbar";
 import NotificationBox from "../../../Components/Notification/NotificationBox/NotificationBox";
 
-const AdminDashboardPage = () => {
+const CustomerDashboardPage = () => {
   return (
-    <div className="AdminDashboardPage">
+    <div className="CustomerDashboardPage">
       <Navbar />
       <SubNavbar />
-      <div className="AdminDashboardPage__maincontainer">
-        <h5 className="AdminDashboardPage__header">WELCOME ADMIN !!</h5>
-        <div className="AdminDashboardPage__card_container">
+      <div className="CustomerDashboardPage__maincontainer">
+        <h5 className="CustomerDashboardPage__header">WELCOME CUSTOMER !!</h5>
+        <div className="CustomerDashboardPage__card_container">
           <DashbordCard
             title={"VIEW INVENTORY"}
             content={
@@ -28,7 +28,7 @@ const AdminDashboardPage = () => {
             content={"VIEW OR RESPONDS TO ALERTS"}
           />
         </div>
-        <div className="AdminDashboardPage__card_container">
+        <div className="CustomerDashboardPage__card_container">
           <DashbordCard
             title={"GENERATE REPORTS"}
             content={"GENERATE REPORTS, DOWNLOAD REPORTS, ANALYSING"}
@@ -83,4 +83,4 @@ const AdminDashboardPage = () => {
   );
 };
 
-export default AdminDashboardPage;
+export default CustomerDashboardPage;
