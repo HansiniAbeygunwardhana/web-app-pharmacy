@@ -6,7 +6,7 @@ import "./HomePage.scss";
 export const HomePage = () => {
   return (
     <div className="HomePage">
-      <Navbar />
+      <Navbar logoDestination="/" />
       <SubNavbar />
     </div>
   );

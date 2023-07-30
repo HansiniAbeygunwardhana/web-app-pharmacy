@@ -8,7 +8,7 @@ import NotificationBox from "../../../Components/Notification/NotificationBox/No
 const EmployeeDashboardPage = () => {
   return (
     <div className="Employeedashboard">
-      <Navbar />
+      <Navbar logoDestination="/" />
       <SubNavbar />
       <div className="Employeedashboard__maincontainer">
         <h5 className="Employeedashboard__header">ACCOUNT</h5>

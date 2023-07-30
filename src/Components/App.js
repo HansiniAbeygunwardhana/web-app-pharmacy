@@ -19,6 +19,7 @@ import LoginPage from "../Pages/LoginPage/LoginPage";
 import AuthGuard from "../Auth/AuthGuard";
 import ProductDetailContainer from "../Components/ProductDetailContainer/ProductDetailContainer";
 import PlaceOrderFormPage from "../Pages/PlaceOrderFormPage/PlaceOrderFormPage";
+import OrderDetailTablePage from "../Pages/OrderDetailsTablePage/OrderDetailsTablePage";
 import { AuthInterceptor } from "../Auth/AuthInterceptor";
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
             element={<CustomerDashboardPage />}
           />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/allorderdetails" element={<OrderDetailTablePage />} />
           <Route
             path="/placeorderform/:productId"
             element={<PlaceOrderFormPage />}

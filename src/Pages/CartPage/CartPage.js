@@ -73,7 +73,7 @@ function CartPage() {
 
   return (
     <div className="CartPage">
-      <Navbar />
+      <Navbar logoDestination="/" />
       <SubNavbar />
       <div
         style={{ paddingLeft: "100px", fontWeight: "bold", paddingTop: "50px" }}
@@ -83,16 +83,20 @@ function CartPage() {
       <div className="CartPage__container">
         <div className="CartPage__container__item">
           {/* Render the cart item if it exists */}
-          {cartItem.map((cartItem) => (
-            <CartItem
-              key={cartItem.cartId}
-              name={cartItem.product.productName}
-              price={cartItem.product.productPrice}
-              quantity={cartItem.quantity}
-              cartId={cartItem.cartId}
-              onCartItemDeleted={handleCartItemDeleted}
-            />
-          ))}
+          {cartItem.length > 0 ? (
+            cartItem.map((cartItem) => (
+              <CartItem
+                key={cartItem.cartId}
+                name={cartItem.product.productName}
+                price={cartItem.product.productPrice}
+                quantity={cartItem.quantity}
+                cartId={cartItem.cartId}
+                onCartItemDeleted={handleCartItemDeleted}
+              />
+            ))
+          ) : (
+            <p>No cart items available.</p>
+          )}
         </div>
         <div className="CartPage__container__item">
           {cartItem.length > 0 && (

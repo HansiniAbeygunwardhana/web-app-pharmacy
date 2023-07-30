@@ -1,8 +1,10 @@
 import React from "react";
 import "./CartDetails.scss";
 import PrimaryButton from "../../Buttons/PrimaryButton/PrimaryButton";
+import { useNavigate } from "react-router-dom";
 
 const CartDetails = ({ subtotal, tax, discount, total, button }) => {
+  const navigate = useNavigate("");
   return (
     <div className="CartDetails">
       <div className="CartDetails__title">SUMMARY</div>
@@ -33,6 +35,10 @@ const CartDetails = ({ subtotal, tax, discount, total, button }) => {
           color: "blue",
           fontSize: "15px",
           paddingTop: "10px",
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          navigate("/product");
         }}
       >
         CONTINUE SHOPPING

@@ -39,7 +39,7 @@ export const HomePage = () => {
 
   return (
     <div className="HomePage">
-      <Navbar />
+      <Navbar logoDestination="/" />
       <SubNavbar />
       <CarouselGallery />
       <NoticeBar />

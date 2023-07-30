@@ -238,7 +238,7 @@ export const ProductPage = () => {
 
   return (
     <div className="ProductPage">
-      <Navbar />
+      <Navbar logoDestination="/" />
       <SubNavbar />
       <Sort onSortValueChanged={onSortValueSelected} />
       <Container fluid>

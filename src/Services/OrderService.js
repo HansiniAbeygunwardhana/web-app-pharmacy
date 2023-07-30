@@ -10,6 +10,9 @@ class OrderService {
       orderInput
     );
   }
+  static getAllOrderDetails(status) {
+    return api.get(`${ORDER_BASE_REST_API_URL}/getAllOrderDetails/${status}`);
+  }
 }
 
 export default OrderService;

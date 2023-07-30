@@ -26,7 +26,21 @@ const Checkout = () => {
       },
     ],
   });
+  const tax = 2; // Replace this with the actual tax value from the API response or any other source
 
+  // Calculate the total value
+  const calculateTotal = () => {
+    if (cartItems.length > 0) {
+      const subtotal = cartItems.reduce(
+        (total, cartItems) =>
+          total + cartItems.product.productPrice * cartItems.quantity,
+        0
+      );
+      const taxValue = parseFloat(tax);
+      return subtotal - taxValue;
+    }
+    return 0; // Default value when cartItem is empty
+  };
   useEffect(() => {
     CartService.getCartDetails()
       .then((response) => {
@@ -86,7 +100,7 @@ const Checkout = () => {
   };
   return (
     <div className="Checkout">
-      <Navbar />
+      <Navbar logoDestination="/" />
       <SubNavbar />
       <div
         style={{ paddingLeft: "150px", fontWeight: "bold", paddingTop: "50px" }}
@@ -95,12 +109,17 @@ const Checkout = () => {
       </div>
       <div className="Checkout__container">
         <div className="Checkout__container__sub">
-          <CartDetails
-            subtotal={"1000"}
-            tax={"500"}
-            discount={"200"}
-            total={"1300"}
-          />
+          {cartItems.length > 0 && (
+            <CartDetails
+              subtotal={cartItems.reduce(
+                (total, cartItems) =>
+                  total + cartItems.product.productPrice * cartItems.quantity,
+                0
+              )}
+              tax={tax}
+              total={calculateTotal()} // Calculate and pass the total value here
+            />
+          )}
         </div>
         <div className="Checkout__container__sub">
           <div className="Checkout__container__title">
@@ -138,7 +157,6 @@ const Checkout = () => {
               btnContent={"PLACE ORDER"}
               btnFunc={() => handleBtnClick(cartItems)}
             />
-            <PrimaryButton />
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ import PrimaryButton from "../Buttons/PrimaryButton/PrimaryButton";
 import UserNavigation from "./UserNavigation/UserNavigation";
 import UserAuthService from "../../Services/UserAuthService";
 
-export const Navbar = ({ onInputSearchChange }) => {
+export const Navbar = ({ onInputSearchChange, logoDestination }) => {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(UserAuthService.isLoggedIn());
@@ -69,7 +69,7 @@ export const Navbar = ({ onInputSearchChange }) => {
         <div
           className="Navbar__logo"
           onClick={() => {
-            navigate("/");
+            navigate(logoDestination); // Use the prop value for navigation
           }}
         >
           SHAN PHARMACY

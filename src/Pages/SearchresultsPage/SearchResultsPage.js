@@ -13,7 +13,7 @@ export const SearchResultsPage = () => {
 
   return (
     <div className="ProductPage">
-      <Navbar />
+      <Navbar logoDestination="/" />
       <SubNavbar />
       <div className="ProductList">
         {productItemList.map((productItem, key) => (

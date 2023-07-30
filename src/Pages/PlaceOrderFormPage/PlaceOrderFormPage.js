@@ -62,7 +62,7 @@ const PlaceOrderFormPage = () => {
   };
   return (
     <div>
-      <Navbar />
+      <Navbar logoDestination="/" />
       <SubNavbar />
       <div style={{ display: "flex" }}>
         <PlaceOrderForm />

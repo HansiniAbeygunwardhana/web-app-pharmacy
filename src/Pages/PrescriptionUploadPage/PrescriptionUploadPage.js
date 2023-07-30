@@ -7,7 +7,7 @@ import Footer from "../../Components/Footer/Footer";
 const PrescriptionUploadPage = () => {
   return (
     <div>
-      <Navbar />
+      <Navbar logoDestination="/" />
       <SubNavbar />
       <PrescriptForm />
       <Footer />

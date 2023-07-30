@@ -6,7 +6,7 @@ import InventoryForm from "../../Components/Forms/InventoryForm/InventoryForm";
 export const AddInventoryFormPage = () => {
   return (
     <div className="AddInventoryFormPage">
-      <Navbar />
+      <Navbar logoDestination="/admindashboard" />
       <InventoryForm />
     </div>
   );

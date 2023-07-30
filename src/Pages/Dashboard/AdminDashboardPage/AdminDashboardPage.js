@@ -10,8 +10,7 @@ const AdminDashboardPage = () => {
   const navigate = useNavigate("");
   return (
     <div className="AdminDashboardPage">
-      <Navbar />
-      <SubNavbar />
+      <Navbar logoDestination="/admindashboard" />
       <div className="AdminDashboardPage__maincontainer">
         <h5 className="AdminDashboardPage__header">WELCOME ADMIN !!</h5>
         <div className="AdminDashboardPage__card_container">
@@ -25,8 +24,11 @@ const AdminDashboardPage = () => {
             }}
           />
           <DashbordCard
-            title={"YOUR PROFILE"}
+            title={"VIEW ORDERS"}
             content={"EDIT NAME, MOBILE NUMBER, EMAIL, AND PASSWORD"}
+            onClick={() => {
+              navigate("/allorderdetails");
+            }}
           />
           <DashbordCard
             title={"ALERTS"}
