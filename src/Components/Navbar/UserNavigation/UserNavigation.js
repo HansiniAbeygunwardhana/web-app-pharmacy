@@ -3,9 +3,7 @@ import "./UserNavigation.scss";
 import { useEffect } from "react";
 
 const UserNavigation = ({ userText, onClickFunc }) => {
-  useEffect(() => {
-    console.log("UserNavigation re-rendered");
-  });
+  useEffect(() => {});
   const handleClick = () => {
     if (onClickFunc) {
       onClickFunc();

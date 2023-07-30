@@ -15,13 +15,13 @@ const CartDetails = ({ subtotal, tax, discount, total, button }) => {
           <div className="CartDetails__item__title">TAX</div>
           <div>{tax} LKR</div>
         </div>
-        <div className="CartDetails__item">
+        {/* <div className="CartDetails__item">
           <div className="CartDetails__item__title">DISCOUNT</div>
           <div>{discount} LKR</div>
-        </div>
+        </div> */}
         <div
           className="CartDetails__item"
-          style={{ paddingBottom: "10px", borderBottom: "1px solid black" }}
+          style={{ paddingTop: "10px", borderTop: "1px solid black" }}
         >
           <div className="CartDetails__item__title">ORDER TOTAL</div>
           <div>{total} LKR</div>

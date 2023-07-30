@@ -11,7 +11,8 @@ import { Col, Row } from "antd";
 import CustomPagination from "../../Components/Pagination/Pagination";
 import Footer from "../../Components/Footer/Footer";
 import ProductService from "../../Services/ProductService";
-import { useNavigate } from "react-router-dom";
+import CartService from "../../Services/CartService";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const ProductPage = () => {
   const [productItemList, setProductItemList] = useState([]);
@@ -20,12 +21,18 @@ export const ProductPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedPriceRange, setSelectedPriceRange] = useState([[], []]);
   const [selectedSortValue, setSelectedSortValue] = useState("");
+  const [addToCartClicked, setAddToCartClicked] = useState(false);
   const navigate = useNavigate();
-
+  const { productId } = useParams();
   // useEffect(() => {
   //   setProductItemList(ProductList);
   //   setFilteredItemList(ProductList);
   // }, [searchedByItemList]);
+
+  useEffect(() => {
+    // Initialize the addToCartClicked state array with false for each product item
+    setAddToCartClicked(new Array(productItemList.length).fill(false));
+  }, [productItemList]);
 
   useEffect(() => {
     getAllProducts();
@@ -43,8 +50,25 @@ export const ProductPage = () => {
       });
   };
 
-  const onBtnClick = () => {
-    navigate("/cart");
+  const handleBtnClick = (product) => {
+    navigate(`/placeorderform/${product.id}`, { state: { product } });
+  };
+
+  const onIconClick = (productId, index) => {
+    console.log("productId", productId);
+    CartService.addToCart(productId)
+      .then((response) => {
+        // Handle the response from the API, e.g., show a success message
+        console.log("Product added to cart successfully!");
+        // Update the addToCartClicked state for the clicked product item
+        const updatedAddToCartClicked = [...addToCartClicked];
+        updatedAddToCartClicked[index] = true;
+        setAddToCartClicked(updatedAddToCartClicked);
+      })
+      .catch((error) => {
+        // Handle any errors that occurred during the API call
+        console.error("Error adding product to cart:", error);
+      });
   };
 
   const onSortValueSelected = (e) => {
@@ -239,8 +263,9 @@ export const ProductPage = () => {
                   isAvailable={productItem.available}
                   isPrescriptionMed={productItem.prescriptionMed}
                   category={productItem.categoryId}
-                  // onClick={() => onCardClick(productItem.id)}
-                  onBtnClick={onBtnClick}
+                  isInCart={addToCartClicked[key]} // Use the addToCartClicked state for the corresponding product
+                  onBtnClick={() => handleBtnClick(productItem)}
+                  onIconClick={() => onIconClick(productItem.id, key)} // Pass the index to update the correct element in the addToCartClicked array
                 />
               ))}
             </div>

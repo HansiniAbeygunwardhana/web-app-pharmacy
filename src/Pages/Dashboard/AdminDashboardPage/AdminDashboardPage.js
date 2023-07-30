@@ -3,9 +3,11 @@ import DashbordCard from "../../../Components/DashbordCard/DashbordCard";
 import "./AdminDashboardPage.scss";
 import Navbar from "../../../Components/Navbar/Navbar";
 import SubNavbar from "../../../Components/SubNavbar/SubNavbar";
+import { useNavigate } from "react-router-dom";
 import NotificationBox from "../../../Components/Notification/NotificationBox/NotificationBox";
 
 const AdminDashboardPage = () => {
+  const navigate = useNavigate("");
   return (
     <div className="AdminDashboardPage">
       <Navbar />
@@ -18,6 +20,9 @@ const AdminDashboardPage = () => {
             content={
               "VIEW, ADD, UPDATE, DELETE INVENTORY, ADD MINIMUM THRESHOLD"
             }
+            onClick={() => {
+              navigate("/inventorytable");
+            }}
           />
           <DashbordCard
             title={"YOUR PROFILE"}

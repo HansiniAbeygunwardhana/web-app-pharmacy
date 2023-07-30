@@ -12,7 +12,7 @@ import UserAuthService from "../../Services/UserAuthService";
 export const Navbar = ({ onInputSearchChange }) => {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(UserAuthService.isLoggedIn());
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -32,16 +32,16 @@ export const Navbar = ({ onInputSearchChange }) => {
   };
 
   const handleLoginLogout = () => {
-    const loggedIn = UserAuthService.isLoggedIn();
-    setIsLoggedIn(loggedIn);
-    if (loggedIn) {
+    // const loggedIn = UserAuthService.isLoggedIn();
+    // setIsLoggedIn(loggedIn);
+    if (isLoggedIn) {
       // Perform logout action
       UserAuthService.clear();
       setIsLoggedIn(false); // Update the isLoggedIn state to reflect the logout
       navigate("/");
-    } else if (!loggedIn) {
+    } else {
       // Perform login action
-      console.log("check true", loggedIn);
+      // console.log("check true", loggedIn);
       setIsLoggedIn(true); // Update the isLoggedIn state to reflect the login
       navigate("/login");
     }

@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import "./ProductCard.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AddToCart from "../Buttons/AddToCart/AddToCart";
@@ -7,6 +8,9 @@ import StarIcon from "@mui/icons-material/Star";
 import { ProductList } from "../../Helpers/ProductList/ProductList";
 import PrimaryButton from "../Buttons/PrimaryButton/PrimaryButton";
 import { useNavigate } from "react-router-dom";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import CartService from "../../Services/CartService";
 
 const ProductCard = ({
   image,
@@ -17,6 +21,8 @@ const ProductCard = ({
   isPrescriptionMed,
   onClick,
   onBtnClick,
+  onIconClick,
+  isInCart,
 }) => {
   return (
     <div className="Product_card" onClick={onClick}>
@@ -38,12 +44,26 @@ const ProductCard = ({
         </div>
         <div className="Product__card__button">
           {isAvailable && !isPrescriptionMed && (
-            <div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "20px",
+                alignItems: "center",
+              }}
+            >
               <PrimaryButton
-                btnContent={"ADD TO CART"}
-                icon={<ShoppingCartIcon />}
+                btnContent={"BUY NOW"}
+                icon={<LocalMallIcon />}
                 btnFunc={onBtnClick}
               />
+              <div className="shopping_cart" onClick={onIconClick}>
+                {isInCart ? (
+                  <ShoppingCartIcon style={{ fontSize: "24px" }} />
+                ) : (
+                  <ShoppingCartOutlinedIcon />
+                )}
+              </div>
             </div>
           )}
         </div>

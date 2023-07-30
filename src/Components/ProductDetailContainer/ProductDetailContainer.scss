@@ -2,3 +2,13 @@
 @import "../../Stylings/variables/colors.scss";
 @import "../../Stylings/variables/fonts.scss";
 
+.ProductDetailContainer{
+    display: flex;
+    padding: 25px;
+    border-radius: 15px;
+    gap: 20px;
+    width: 50%;
+    background-color: white;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    font-size: $myFont;
+}
