@@ -1,0 +1,10 @@
+@import "../../../Stylings/mixins/mixins.scss";
+@import "../../../Stylings/variables/colors.scss";
+@import "../../../Stylings/variables/fonts.scss";
+
+.chart__sales{
+    padding: 30px;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin: 50px 50px;
+}

@@ -22,6 +22,7 @@ import PlaceOrderFormPage from "../Pages/PlaceOrderFormPage/PlaceOrderFormPage";
 import OrderDetailTablePage from "../Pages/OrderDetailsTablePage/OrderDetailsTablePage";
 import PrescriptionDetailTablePage from "../Pages/PrescriptionDetailTablePage/PrescriptionDetailTablePage";
 import PrescriptionDetailsPage from "../Pages/PrescriptionDetailsPage/PrescriptionDetailsPage";
+import ReportPage from "../Pages/ReportPage/ReportPage";
 import { AuthInterceptor } from "../Auth/AuthInterceptor";
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
           <Route path="/inventorytable" element={<InventoryTablePage />} />
           <Route path="/admindashboard" element={<AdminDashboardPage />} />
           <Route path="/productdetail" element={<ProductDetailContainer />} />
+          <Route path="/reportpage" element={<ReportPage />} />
           <Route
             path="/employeedashboard"
             element={<EmployeeDashboardPage />}

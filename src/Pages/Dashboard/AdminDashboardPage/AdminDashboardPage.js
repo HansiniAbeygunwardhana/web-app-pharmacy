@@ -42,6 +42,9 @@ const AdminDashboardPage = () => {
           <DashbordCard
             title={"GENERATE REPORTS"}
             content={"GENERATE REPORTS, DOWNLOAD REPORTS, ANALYSING"}
+            onClick={() => {
+              navigate("/reportpage");
+            }}
           />
           <DashbordCard
             title={"UPLOADED PRESCRIPTIONS"}
