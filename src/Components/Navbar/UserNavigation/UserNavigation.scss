@@ -1,0 +1,24 @@
+@import "../../../Stylings/mixins/mixins.scss";
+@import "../../../Stylings/variables/colors.scss";
+@import "../../../Stylings/variables/fonts.scss";
+
+
+.Navbar__user__details__user{
+        @include display-items;
+        align-items: flex-start;
+        padding: 0px;
+        cursor: pointer;
+        color: $primaryColor3;
+        @include font-normal;
+        
+        
+        // .Navbar__user__details__user__icon{
+        //     color: $primaryColor3;
+        // }
+        // .Navbar__user__details__user__text{
+        //     @include font-normal;
+        //     text-align: center;
+        //     color: $primaryColor3;
+          
+        // }
+    }

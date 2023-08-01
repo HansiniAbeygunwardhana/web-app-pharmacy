@@ -1,0 +1,89 @@
+.InventoryForm_Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  
+    h5 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  }
+  .InventoryForm {
+    width: 800px;
+    .invalid-field {
+      border-color: #f5222d; /* Red border color for invalid fields */
+      outline: 2px solid #f5222d; /* Red outline for invalid fields */
+    }
+    .formI {
+      .form-group {
+        margin-bottom: 20px;
+        max-width: 300px;
+
+        .form-group [data-error] .form-element{
+          border-color: #c92432;
+          color: #c92432;
+          background-color: #fffafa;
+        }
+        .form-group [data-error]::after{
+          content: attr(data-error);
+        }
+
+        .form-element{
+          display: block;
+          width: 100%;
+          padding: 12px;
+          border: 1px solid #dddddd;
+          border-radius: 4px;
+        }
+  
+        label {
+          display: block;
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+  
+        input,
+        select {
+          width: 100%;
+          padding: 8px;
+          font-size: 14px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+  
+        select {
+          appearance: none;
+        }
+  
+        input[type="number"] {
+          -moz-appearance: textfield;
+        }
+  
+        input[type="checkbox"] {
+          margin-right: 5px;
+        }
+  
+        button {
+          padding: 8px 16px;
+          font-size: 14px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          background-color: #1890ff;
+          color: #fff;
+          transition: background-color 0.3s ease;
+  
+          &:hover {
+            background-color: #40a9ff;
+          }
+  
+          &:not(:last-child) {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+  

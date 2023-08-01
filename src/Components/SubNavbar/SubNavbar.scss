@@ -4,13 +4,24 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
 .SubNavbar{
-  width: 100%;
+  width: 100%; 
   background-color: $primaryColor2;
+  display: flex;
+  flex-direction: row;
   @include font-normal;
   color: $primaryColor3;
+  
   .SubNavbar__list{
-    justify-content: space-between;
-    padding: 0px 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+    &:hover{
+      background-color: white;
+      cursor: pointer;
+      color: $primaryColor2;
+    }   
   }
   .SubNavbar__dropdown .dropdown-toggle{
     color: $primaryColor3;

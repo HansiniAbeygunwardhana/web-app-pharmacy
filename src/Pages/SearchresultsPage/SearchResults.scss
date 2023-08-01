@@ -1,0 +1,20 @@
+@import "../../Stylings/mixins/mixins.scss";
+@import "../../Stylings/variables/colors.scss";
+@import "../../Stylings/variables/fonts.scss";
+
+.ProductPage{
+    width: 100%;
+    @include display-items;
+    justify-content: center;
+    flex-direction: column;
+    font-family: $myFont;
+
+    .ProductList{
+        margin-left: 25px;
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        place-items: center;
+    }
+
+}

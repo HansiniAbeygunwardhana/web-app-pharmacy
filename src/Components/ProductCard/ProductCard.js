@@ -1,10 +1,16 @@
 import React from "react";
+import { useState } from "react";
 import "./ProductCard.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AddToCart from "../Buttons/AddToCart/AddToCart";
 import { Add } from "@mui/icons-material";
 import StarIcon from "@mui/icons-material/Star";
 import { ProductList } from "../../Helpers/ProductList/ProductList";
+import PrimaryButton from "../Buttons/PrimaryButton/PrimaryButton";
+import { useNavigate } from "react-router-dom";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import CartService from "../../Services/CartService";
 
 const ProductCard = ({
   image,
@@ -13,13 +19,13 @@ const ProductCard = ({
   price,
   isAvailable,
   isPrescriptionMed,
+  onClick,
+  onBtnClick,
+  onIconClick,
+  isInCart,
 }) => {
   return (
-    <div className="Product_card">
-      {/* <div
-        className="Product_card__image"
-        style={{ backgroundImage: `url(${image})` }}
-      ></div> */}
+    <div className="Product_card" onClick={onClick}>
       <img className="Product_card__image" src={image}></img>
       <div className="Product_card__details">
         <h5 className="Product_card__title">{name}</h5>
@@ -38,8 +44,26 @@ const ProductCard = ({
         </div>
         <div className="Product__card__button">
           {isAvailable && !isPrescriptionMed && (
-            <div>
-              <AddToCart />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "20px",
+                alignItems: "center",
+              }}
+            >
+              <PrimaryButton
+                btnContent={"BUY NOW"}
+                icon={<LocalMallIcon />}
+                btnFunc={onBtnClick}
+              />
+              <div className="shopping_cart" onClick={onIconClick}>
+                {isInCart ? (
+                  <ShoppingCartIcon style={{ fontSize: "24px" }} />
+                ) : (
+                  <ShoppingCartOutlinedIcon />
+                )}
+              </div>
             </div>
           )}
         </div>

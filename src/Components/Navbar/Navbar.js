@@ -1,45 +1,109 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Navbar.scss";
-import SearchIcon from "@mui/icons-material/Search";
+import { ProductList } from "../../Helpers/ProductList/ProductList";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import SearchBar from "../SearchBar/SearchBar";
+import PrimaryButton from "../Buttons/PrimaryButton/PrimaryButton";
+import UserNavigation from "./UserNavigation/UserNavigation";
+import UserAuthService from "../../Services/UserAuthService";
 
-export const Navbar = () => {
+export const Navbar = ({ onInputSearchChange, logoDestination }) => {
+  const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(UserAuthService.isLoggedIn());
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSearch = (searchTerm) => {
+    setInputValue(searchTerm);
+    console.log("Search:", searchTerm);
+  };
+
+  const handleSearchIconClick = () => {
+    navigate("/search-results");
+  };
+
+  const handleUploadPrescription = () => {
+    navigate("/prescriptionupload");
+  };
+
+  const handleLoginLogout = () => {
+    // const loggedIn = UserAuthService.isLoggedIn();
+    // setIsLoggedIn(loggedIn);
+    if (isLoggedIn) {
+      // Perform logout action
+      UserAuthService.clear();
+      setIsLoggedIn(false); // Update the isLoggedIn state to reflect the logout
+      navigate("/");
+    } else {
+      // Perform login action
+      // console.log("check true", loggedIn);
+      setIsLoggedIn(true); // Update the isLoggedIn state to reflect the login
+      navigate("/login");
+    }
+  };
+
+  const suggestDropDown = () => {
+    return ProductList.filter((productItem) => {
+      const searchTerm = inputValue.toLowerCase();
+      const name = productItem.name.toLowerCase();
+      return searchTerm && name.startsWith(searchTerm) && name !== searchTerm;
+    }).map((productItem, key) => (
+      <div
+        key={productItem.id}
+        className="Navbar__dropdown__row"
+        onClick={() => handleSearch(productItem.name)}
+      >
+        {productItem.name}
+      </div>
+    ));
+  };
+
   return (
     <>
       <nav className="Navbar">
-        <div className="Navbar__logo">SHAN PHARMACY</div>
-        <div className="Navbar__search">
-          <input
-            className="Navbar__search__text"
-            type="text"
-            placeholder="Search entire pharmacy..."
-          />
-          <div className="Navbar__search__icon">
-            <SearchIcon />
-          </div>
+        <div
+          className="Navbar__logo"
+          onClick={() => {
+            navigate(logoDestination); // Use the prop value for navigation
+          }}
+        >
+          SHAN PHARMACY
         </div>
-        <button className="Navbar__upload__button">
-          <div className="Navbar__upload__button__text">
-            UPLOAD YOUR PRESCRIPTION
-          </div>
-          <div className="Navbar__upload__button__icon">
-            <TextSnippetIcon />
-          </div>
-        </button>
+        <div>
+          <SearchBar
+            onInputChange={handleInputChange}
+            value={inputValue}
+            onSearchIconClick={handleSearchIconClick}
+            suggestDropDown={suggestDropDown}
+            onChange={onInputSearchChange}
+          />
+        </div>
+        <div onClick={handleUploadPrescription}>
+          <PrimaryButton
+            icon={<TextSnippetIcon />}
+            btnContent={"UPLOAD PRESCRIPTION"}
+          />
+        </div>
         <div className="Navbar__user__details">
-          <div className="Navbar__user__details__user">
-            <div className="Navbar__user__details__user__icon">
-              <AccountCircleIcon />
-            </div>
-            <div className="Navbar__user__details__user__text">UserName</div>
-          </div>
-          <div className="Navbar__user__details__cart">
-            <div className="Navbar__user__details__cart__icon">
-              <ShoppingCartIcon />
-            </div>
-            <div className="Navbar__user__details__cart__text">0</div>
+          <div>
+            {isLoggedIn ? (
+              <UserNavigation
+                userIcon={<AccountCircleIcon />}
+                userText={"LOGOUT"}
+                onClickFunc={handleLoginLogout}
+              />
+            ) : (
+              <UserNavigation
+                userIcon={<AccountCircleIcon />}
+                userText={"LOGIN"}
+                onClickFunc={handleLoginLogout}
+              />
+            )}
           </div>
         </div>
       </nav>

@@ -1,3 +1,9 @@
 .HomePage{
     display: block;
+
+    .HomePage__Figure{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }

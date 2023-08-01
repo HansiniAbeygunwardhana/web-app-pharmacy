@@ -1,0 +1,25 @@
+@import "../../Stylings/mixins/mixins.scss";
+@import "../../Stylings/variables/colors.scss";
+@import "../../Stylings/variables/fonts.scss";
+
+.Checkout{
+    font-family: $myFont;
+    .Checkout__container{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px 100px;
+        .Checkout__container__sub{
+            width: 50%;
+            .Checkout__container__title{
+                background-color: $primaryColor2;
+                color: $primaryColor3;
+                @include font-semibold;
+                padding: 0px 30px;
+            }
+
+        }
+        
+    }
+}

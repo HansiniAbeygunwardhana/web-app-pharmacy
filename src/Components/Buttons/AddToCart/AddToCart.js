@@ -1,10 +1,10 @@
 import React from "react";
-import "./AddToCart.scss";
+import "./Button.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export const AddToCart = () => {
   return (
-    <div className="Add_to_cart_button">
+    <div className="button">
       <div className="Add_to_cart_button__icon">
         <ShoppingCartIcon />
       </div>

@@ -1,0 +1,36 @@
+@import "../../Stylings/mixins/mixins.scss";
+@import "../../Stylings/variables/colors.scss";
+@import "../../Stylings/variables/fonts.scss";
+
+.Article {
+    width:100%;
+    height: 300px;
+    margin:25px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    place-items: center;
+
+    .Article__content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 75%;
+        .Article__content__button{
+            width: 50%;
+
+            }
+            .Article__content__text{
+                color: $primaryColor3;
+                @include font-normal;
+        
+                .Article__content__text__title{
+                    @include font-semibold;
+                    font-size: 25px;
+                }
+            }
+
+    }
+}

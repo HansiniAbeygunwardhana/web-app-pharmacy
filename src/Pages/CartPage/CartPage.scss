@@ -1,0 +1,19 @@
+@import "../../Stylings/mixins/mixins.scss";
+@import "../../Stylings/variables/colors.scss";
+@import "../../Stylings/variables/fonts.scss";
+
+
+.CartPage{
+  font-family: $myFont;
+    .CartPage__container{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px 100px;
+    
+        .CartPage__container__item{
+            width: 50%;
+        }
+    }
+}

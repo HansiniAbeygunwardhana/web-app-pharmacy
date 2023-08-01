@@ -1,0 +1,40 @@
+@import '../../Stylings/mixins/mixins.scss';
+@import '../../Stylings/variables/colors.scss';
+@import '../../Stylings/variables/fonts.scss';
+
+.Footer{
+    @include display-items;
+    align-items: normal;
+    width: 100%;
+    padding: 80px;
+    background-color: $primaryColor2;
+    color: $primaryColor3;
+    .Footer__logo{
+        width:5%;
+        margin-right: 250px;
+        margin-left: 10px;
+        @include font-extrabold;
+        font-size: 32px;
+        line-height: 38px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .Footer__stack{
+        align-items: flex-start;
+        .Footer__stack__title{
+            @include font-extrabold;
+            font-size: 18px;
+            padding: 15px 0px;
+        }
+        .Footer__stack__list{
+            ul{
+                list-style: none;
+                padding: 0px;
+            }
+            li{
+                cursor: pointer;
+
+            }
+        }
+    }
+}

@@ -1,0 +1,58 @@
+@import "../../../Stylings/mixins/mixins.scss";
+@import "../../../Stylings/variables/colors.scss";
+@import "../../../Stylings/variables/fonts.scss";
+
+
+.PrescriptUpload{
+    font-family: $myFont;
+    width: 100%;
+    padding: 25px 50px;
+    .PrescriptHeader{
+
+        margin-bottom: 15px;
+        border-bottom: 1px solid $primaryColor4;
+
+    }
+
+
+    .PrescriptForm{
+        @include display-items;
+        align-items: start;
+    
+        .PrescriptForm__container{
+            width: 50%;
+            @include display-items-columns;
+            align-items: center;
+            gap: 25px;
+    
+            .PrescriptForm__container__uploader{
+                margin-top: 50px;
+            }
+            .PrescriptForm__container__form{
+                display: flex;
+                flex-direction: column;
+                justify-content: start;
+                align-items: start;
+                gap: 15px;
+                .PrescriptForm__container__form__field{
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  gap: 5px;
+    
+                  .PrescriptForm__container__form__field__title{
+                    @include font-semibold;
+                  }
+                  .PrescriptForm__container__form__field__textarea {
+                    resize: none;
+                    padding: 8px;
+                    font-size: 14px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                  }
+                }
+            }
+        }
+    }
+
+}
