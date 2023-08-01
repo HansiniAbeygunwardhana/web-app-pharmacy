@@ -11,16 +11,18 @@ export const InventoryTablePage = () => {
   return (
     <div className="InventoryTablePage">
       <Navbar logoDestination="/admindashboard" />
-      {/* <div className="InventoryTablePage__conatiner"> */}
-      <PrimaryButton
-        icon={<AddIcon />}
-        btnContent={"ADD NEW"}
-        btnFunc={() => {
-          navigate("/addinventoryform");
-        }}
-      />
-      <InventoryTable />
-      {/* </div> */}
+      <div style={{ padding: "20px 100px" }}>
+        <div style={{ display: "inline-block" }}>
+          <PrimaryButton
+            icon={<AddIcon />}
+            btnContent={"ADD NEW"}
+            btnFunc={() => {
+              navigate("/addinventoryform");
+            }}
+          />
+        </div>
+        <InventoryTable />
+      </div>
     </div>
   );
 };

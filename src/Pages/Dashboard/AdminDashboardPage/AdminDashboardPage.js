@@ -31,8 +31,11 @@ const AdminDashboardPage = () => {
             }}
           />
           <DashbordCard
-            title={"ALERTS"}
-            content={"VIEW OR RESPONDS TO ALERTS"}
+            title={"UPLOADED PRESCRIPTIONS"}
+            content={"CHECK UPLOADED PRESCRIPTIONS, FILL PRESCRIPTIONS"}
+            onClick={() => {
+              navigate("/allprescriptiondetails");
+            }}
           />
         </div>
         <div className="AdminDashboardPage__card_container">

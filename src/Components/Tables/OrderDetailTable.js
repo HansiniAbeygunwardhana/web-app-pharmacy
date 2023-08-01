@@ -31,13 +31,18 @@ const OrderDetailTable = () => {
       dataIndex: "userName",
       key: "userName",
     },
+    {
+      title: "Status",
+      dataIndex: "orderStatus",
+      key: "orderStatus",
+    },
   ];
 
   const [orderDetails, setOrderDetails] = useState([]);
 
   useEffect(() => {
     // Fetch all order details with status "All" (or any other desired status)
-    OrderService.getAllOrderDetails("PLACED")
+    OrderService.getAllOrderDetails("PLACED" || "DELIVERED")
       .then((response) => {
         setOrderDetails(response.data);
       })
@@ -53,6 +58,7 @@ const OrderDetailTable = () => {
     id: order.product.id,
     productName: order.product.productName,
     userName: order.user.userName,
+    orderStatus: order.orderStatus,
   }));
 
   return (

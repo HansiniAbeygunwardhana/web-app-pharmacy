@@ -10,14 +10,14 @@ const InventoryForm = () => {
   const [formData, setFormData] = useState({
     productName: "",
     categoryId: 1,
-    productPrice: 1,
-    quantity: 1,
+    productPrice: 0,
+    quantity: 0,
     available: false,
     prescriptionMed: false,
     file: null,
     productRating: 1,
     expDate: "",
-    threshold: 1,
+    threshold: 0,
   });
 
   const [showSuccess, setShowSuccess] = useState(false);
@@ -98,6 +98,10 @@ const InventoryForm = () => {
     if (formData.productName.trim() === "") {
       // Check if product name is empty
       errors.productName = "Product name is required.";
+    } else if (!/^[\w\s]{3,50}$/.test(formData.productName)) {
+      // Check for character limit and prevent special characters
+      errors.productName =
+        "Product name must be between 3 and 50 characters and contain only letters, numbers, and spaces.";
     }
 
     if (!formData.categoryId) {
@@ -110,19 +114,9 @@ const InventoryForm = () => {
       errors.productPrice = "Product price must be greater than zero.";
     }
 
-    if (formData.quantity <= 0) {
-      // Check if quantity is valid
-      errors.quantity = "Quantity must be greater than zero.";
-    }
-
     if (formData.threshold <= 0) {
       // Check if threshold value is valid
       errors.threshold = "Threshold value must be greater than zero.";
-    }
-
-    if (!formData.expDate) {
-      // Check if expiration date is selected
-      errors.expDate = "Expiration date is required.";
     }
 
     if (formData.quantity === 0 && formData.available) {
@@ -171,6 +165,7 @@ const InventoryForm = () => {
       <h5>ADD PRODUCT</h5>
       <div className="InventoryForm">
         <form
+          noValidate
           className="formI"
           onSubmit={handleSubmit}
           encType="multipart/form-data"
@@ -180,7 +175,7 @@ const InventoryForm = () => {
             <input
               className="form-element"
               style={{
-                borderColor: invalidFields.productName ? "red" : "blue",
+                borderColor: invalidFields.productName ? "red" : "#757575",
               }}
               id="productName"
               name="productName"
@@ -188,6 +183,8 @@ const InventoryForm = () => {
               value={formData.productName}
               onChange={handleChange}
               required
+              pattern="[A-Za-z0-9 ]+"
+              title="Product name must be between 3 and 50 characters and contain only letters, numbers, and spaces."
             />
             {invalidFields.productName && (
               <div style={{ color: "red" }}>{invalidFields.productName}</div>
@@ -196,6 +193,9 @@ const InventoryForm = () => {
           <div className="form-group">
             <label htmlFor="categoryId">Category</label>
             <select
+              style={{
+                borderColor: invalidFields.categoryId ? "red" : "#757575",
+              }}
               className="form-element"
               id="categoryId"
               name="categoryId"
@@ -209,10 +209,16 @@ const InventoryForm = () => {
                 </option>
               ))}
             </select>
+            {invalidFields.categoryId && (
+              <div style={{ color: "red" }}>{invalidFields.categoryId}</div>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="quantity">Quantity</label>
             <input
+              style={{
+                borderColor: invalidFields.quantity ? "red" : "#757575",
+              }}
               className="form-element"
               id="quantity"
               name="quantity"
@@ -222,10 +228,16 @@ const InventoryForm = () => {
               onChange={handleChange}
               required
             />
+            {invalidFields.quantity && (
+              <div style={{ color: "red" }}>{invalidFields.quantity}</div>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="threshold">Threshold Value</label>
             <input
+              style={{
+                borderColor: invalidFields.threshold ? "red" : "#757575",
+              }}
               className="form-element"
               id="threshold"
               name="threshold"
@@ -235,10 +247,16 @@ const InventoryForm = () => {
               onChange={handleChange}
               required
             />
+            {invalidFields.threshold && (
+              <div style={{ color: "red" }}>{invalidFields.threshold}</div>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="productPrice">Price</label>
             <input
+              style={{
+                borderColor: invalidFields.productPrice ? "red" : "#757575",
+              }}
               className="form-element"
               id="productPrice"
               name="productPrice"
@@ -251,10 +269,16 @@ const InventoryForm = () => {
             <span className="ant-form-text" style={{ marginLeft: 8 }}>
               LKR
             </span>
+            {invalidFields.productPrice && (
+              <div style={{ color: "red" }}>{invalidFields.productPrice}</div>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="available">Available</label>
             <input
+              style={{
+                borderColor: invalidFields.available ? "red" : "#757575",
+              }}
               className="form-element"
               id="available"
               name="available"
@@ -262,10 +286,16 @@ const InventoryForm = () => {
               checked={formData.available}
               onChange={handleChange}
             />
+            {invalidFields.available && (
+              <div style={{ color: "red" }}>{invalidFields.available}</div>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="prescriptionMed">Prescription Medicine</label>
             <input
+              style={{
+                borderColor: "#757575",
+              }}
               className="form-element"
               id="prescriptionMed"
               name="prescriptionMed"
@@ -277,6 +307,9 @@ const InventoryForm = () => {
           <div className="form-group">
             <label htmlFor="productRating">Rate</label>
             <input
+              style={{
+                borderColor: "#757575",
+              }}
               className="form-element"
               id="productRating"
               name="productRating"
@@ -291,6 +324,9 @@ const InventoryForm = () => {
           <div className="form-group">
             <label htmlFor="expDate">Expiration Date</label>
             <input
+              style={{
+                borderColor: "#757575",
+              }}
               className="form-element"
               id="expDate"
               name="expDate"
@@ -302,6 +338,9 @@ const InventoryForm = () => {
           <div className="form-group">
             <label htmlFor="file">Upload</label>
             <input
+              style={{
+                borderColor: "#757575",
+              }}
               className="form-element"
               id="file"
               name="file"
